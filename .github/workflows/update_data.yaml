@@ -20,20 +20,7 @@ jobs:
       with:
         packages: |
           any::tidyverse 
-          any::httr
-          any::jsonlite
-          any::glue
-          any::devtools
 
-    - name: Install pelotonR from GitHub
-      run: |
-        devtools::install_github("lgellis/pelotonR")
-
-    - name: Run data collection setup script
-      env:
-        API_USERNAME: ${{ secrets.API_USERNAME }}
-        API_PASSWORD: ${{ secrets.API_PASSWORD }}
-      run: Rscript -e 'source("code/data-collection-setup.R")'
 
     - name: Run data collection update script
       run: Rscript -e 'write.csv(mtcars, "data/test.csv", row.names=F)'
