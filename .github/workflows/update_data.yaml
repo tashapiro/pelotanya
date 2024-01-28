@@ -2,7 +2,7 @@ name: Update Peloton Data
 
 on:
   schedule:
-    - cron: '48 13 * * *' # This will run daily at midnight UTC. Adjust the schedule as needed.
+    - cron: '50 14 * * *' # This will run daily at midnight UTC. Adjust the schedule as needed.
 
 jobs:
   update_data:
