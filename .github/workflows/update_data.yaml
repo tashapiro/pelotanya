@@ -1,8 +1,9 @@
 name: Update Peloton Data
 
+
 on:
-  schedule:
-    - cron: '56 14 * * *' 
+  push:
+    branches: main
 
 jobs:
   update_data:
