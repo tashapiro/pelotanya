@@ -2,7 +2,7 @@ name: Update Peloton Data
 
 on:
   schedule:
-    - cron: '50 14 * * *' # This will run daily at midnight UTC. Adjust the schedule as needed.
+    - cron: '56 14 * * *' 
 
 jobs:
   update_data:
@@ -38,8 +38,8 @@ jobs:
 
     - name: Commit and push if changes are made
       run: |
-        git config --global user.email "you@example.com"
-        git config --global user.name "Your Name"
+        git config --global user.email "shapiro.tan@gmail.com"
+        git config --global user.name "Tanya Shapiro"
         git add data/peloton_data.csv
         git commit -m "Update data" || echo "No changes to commit"
         git push
