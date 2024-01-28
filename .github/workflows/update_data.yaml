@@ -36,12 +36,12 @@ jobs:
       run: Rscript -e 'source("code/data-collection-setup.R")'
 
     - name: Run data collection update script
-      run: Rscript -e 'source("code/data-collection-update.R")'
+      run: Rscript -e 'write.csv(mtcars, "data/test.csv", row.names=F)'
 
     - name: Commit and push if changes are made
       run: |
         git config --global user.email "shapiro.tan@gmail.com"
         git config --global user.name "Tanya Shapiro"
-        git add data/peloton_data.csv
+        git add data/test.csv
         git commit -m "Update data" || echo "No changes to commit"
         git push origin
