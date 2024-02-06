@@ -18,9 +18,7 @@ jobs:
     - name: Install CRAN dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
       with:
-        packages: |
-          any::tidyverse 
-
+        packages: tidyverse
 
     - name: Run data collection update script
       run: Rscript -e 'write.csv(mtcars, "data/test.csv", row.names=F)'
@@ -29,6 +27,7 @@ jobs:
       run: |
         git config --global user.email "shapiro.tan@gmail.com"
         git config --global user.name "Tanya Shapiro"
+        mkdir -p data
         git add data/test.csv
         git commit -m "Update data" || echo "No changes to commit"
         git push origin
