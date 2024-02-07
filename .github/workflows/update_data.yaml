@@ -25,6 +25,8 @@ jobs:
           any::glue
           any::devtools
     - name: Install pelotonR from GitHub
+      env:
+        GITHUB_PAT: ${{ secrets.GIT_PAT }}
       run: Rscript -e 'devtools::install_github("lgellis/pelotonR")'
     - name: Run data collection setup script
       env:
