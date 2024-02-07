@@ -136,7 +136,7 @@ if(new_count>0){
   peloton_data<- rbind(new_data, previous_data)
 }
 #if there are no new classes 
-else{
+if(new_count==0){
   peloton_data <- previous_data
 }
 
