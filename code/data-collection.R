@@ -136,7 +136,9 @@ if(new_count>0){
   peloton_data<- rbind(new_data, previous_data)
 }
 #if there are no new classes 
-else {peloton_data<-previous_data}
+else{
+  peloton_data <- previous_data
+}
 
 
 write.csv(peloton_data, "data/peloton_data.csv", row.names=F)
