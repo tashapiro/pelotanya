@@ -117,7 +117,7 @@ my_stats <- jsonlite::fromJSON(rawToChar(req_stats$content))
 total_classes <- my_stats$total 
 #pages are 0 indexed
 
-previous_data <- read.csv("data/peloton_data.csv")|>mutate(created_at = strptime(created_at, format="%m/%d/%y %H:%M"))
+previous_data <- read.csv("data/peloton_data.csv")|>mutate(created_at = as_datetime(created_at))
 new_count <- total_classes - nrow(previous_data)
 
 
