@@ -1,4 +1,5 @@
-library(tidyverse)
+library(dplyr)
+library(tidyr)
 library(pelotonR)
 library(httr)
 library(jsonlite)
@@ -8,6 +9,7 @@ library(glue)
 
 username <- Sys.getenv("API_USERNAME")
 password <- Sys.getenv("API_PASSWORD")
+
 
 base_api = "https://api.onepeloton.com/api"
 
@@ -115,8 +117,7 @@ my_stats <- jsonlite::fromJSON(rawToChar(req_stats$content))
 total_classes <- my_stats$total 
 #pages are 0 indexed
 
-previous_data <- read.csv("data/peloton_data.csv")
-
+previous_data <- read.csv("data/peloton_data.csv")|>mutate(created_at = strptime(created_at, format="%m/%d/%y %H:%M"))
 new_count <- total_classes - nrow(previous_data)
 
 
@@ -135,4 +136,3 @@ if(new_count>0){
 
 
 write.csv(peloton_data, "data/peloton_data.csv", row.names=F)
-total_pages <- my_stats$page_count-1
