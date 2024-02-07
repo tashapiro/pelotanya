@@ -117,6 +117,7 @@ my_stats <- jsonlite::fromJSON(rawToChar(req_stats$content))
 
 total_classes <- my_stats$total 
 #pages are 0 indexed
+total_pages <- my_stats$page_count-1
 
 previous_data <- read.csv("data/peloton_data.csv")|>mutate(created_at = as_datetime(created_at))
 new_count <- total_classes - nrow(previous_data)
@@ -134,6 +135,8 @@ if(new_count>0){
   #combine updated data with previous data
   peloton_data<- rbind(new_data, previous_data)
 }
+#if there are no new classes 
+else {peloton_data<-previous_data}
 
 
 write.csv(peloton_data, "data/peloton_data.csv", row.names=F)
