@@ -32,11 +32,7 @@ jobs:
       env:
         API_USERNAME: ${{ secrets.API_USERNAME }}
         API_PASSWORD: ${{ secrets.API_PASSWORD }}
-      run: Rscript -e 'source("code/data-collection-setup.R")'
-
-    - name: Run data collection update script
-      run: Rscript -e 'source("code/data-collection-update.R")'
-
+      run: Rscript -e 'source("code/data-collection.R")'
     - name: Commit and push if changes are made
       run: |
         git config --global user.email "shapiro.tan@gmail.com"
