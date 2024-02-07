@@ -1,5 +1,6 @@
 library(dplyr)
 library(tidyr)
+library(lubridate)
 library(pelotonR)
 library(httr)
 library(jsonlite)
