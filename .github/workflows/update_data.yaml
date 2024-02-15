@@ -2,7 +2,7 @@ name: Update Peloton Data
 
 on:
   schedule:
-    - cron: '30 14 * * *'
+    - cron: '30 13 * * *'
   push:
     branches: main
     
