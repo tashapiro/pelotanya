@@ -23,7 +23,7 @@ jobs:
         packages: |
           any::tidyr
           any::dplyr
-          pak::lubridate
+          any::lubridate
           any::httr
           any::jsonlite
           any::glue
