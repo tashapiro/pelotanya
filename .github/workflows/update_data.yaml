@@ -12,32 +12,31 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup R
       uses: r-lib/actions/setup-r@v2
 
-    - name: Install pal
+    - name: Install CRAN dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
       with:
         packages: |
-          any::pak
-
-    - name: Install CRAN dependencies
-      run: |
-        Rscript -e 'pak::pkg_install(c("tidyr", "dplyr", "lubridate", "httr", "jsonlite", "glue", "devtools"))'
-        
+          any::tidyr
+          any::dplyr
+          any::lubridate
+          any::httr
+          any::jsonlite
+          any::glue
+          any::devtools
     - name: Install pelotonR from GitHub
       env:
         GITHUB_PAT: ${{ secrets.GIT_PAT }}
       run: Rscript -e 'devtools::install_github("lgellis/pelotonR")'
-      
     - name: Run data collection setup script
       env:
         API_USERNAME: ${{ secrets.API_USERNAME }}
         API_PASSWORD: ${{ secrets.API_PASSWORD }}
       run: Rscript -e 'source("code/data-collection.R")'
-      
     - name: Commit and push if changes are made
       run: |
         git config --global user.email "shapiro.tan@gmail.com"
